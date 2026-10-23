@@ -15,7 +15,7 @@ sft = true
 init_from = "/lm24h/runs/lm24h-500m/ckpt/final.pt"
 data_train = "/lm24h/data/sft/train"
 data_val = "/lm24h/data/sft/val"
-epochs = 2
+epochs = 1
 seed = 4321
 micro_batch = 16
 grad_accum = 2            # global batch = 5*16*2 = 160 rows (~330k tok)
