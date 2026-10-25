@@ -183,7 +183,7 @@ The exported chat model boots in upstream vLLM using the standard command:
 ```bash
 vllm serve /lm24h/export/chat \
   --served-model-name lm24h-chat \
-  --port 8000 \
+  --port 8010 \
   --max-model-len 2048 \
   --gpu-memory-utilization 0.25
 ```

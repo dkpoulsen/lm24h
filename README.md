@@ -69,14 +69,14 @@ Serve the exported weights with upstream vLLM:
 ```bash
 vllm serve /lm24h/export/chat \
   --served-model-name lm24h-chat \
-  --port 8000 \
+  --port 8010 \
   --max-model-len 2048 \
   --gpu-memory-utilization 0.25
 ```
 
 ### 3. OpenAI-Compatible API Call
 ```bash
-curl http://127.0.0.1:8000/v1/chat/completions \
+curl http://127.0.0.1:8010/v1/chat/completions \
   -H "Content-Type: application/json" \
   -d '{
     "model": "lm24h-chat",

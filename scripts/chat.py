@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 """Interactive CLI chat with the local lm24h model via its vLLM endpoint."""
-import sys, json, urllib.request
+import os, sys, json, urllib.request
 
-API_URL = "http://127.0.0.1:8000/v1/chat/completions"
-MODEL = "lm24h-chat"
+# Port 8010 by default: port 8000 is taken by the ds41-flash serving stack on this box.
+BASE_URL = os.environ.get("LM24H_BASE_URL", "http://127.0.0.1:8010")
+API_URL = f"{BASE_URL}/v1/chat/completions"
+MODEL = os.environ.get("LM24H_MODEL", "lm24h-chat")
 
 def chat():
     print("=" * 60)
-    print(" 🤖 lm24h-chat Interactive Terminal (trained from scratch)")
+    print(f" 🤖 lm24h-chat Interactive Terminal (trained from scratch) @ {BASE_URL}")
     print(" Type your message and press Enter. Type 'exit' to quit.")
     print("=" * 60)
     history = []
