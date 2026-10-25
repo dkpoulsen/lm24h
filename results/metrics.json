@@ -1,0 +1,56 @@
+{
+  "hardware": {
+    "gpus": "5x NVIDIA CMP 170HX (64 GiB HBM2e each, sm_80)",
+    "pcie_link": "PCIe Gen2 x4 electrical (~2 GB/s/dir, no P2P)",
+    "host_cpu": "AMD Ryzen Threadripper PRO 3975WX (32-core)",
+    "host_ram": "251 GiB DDR4",
+    "benchmarks": {
+      "bf16_matmul_tflops": 162.3,
+      "fp16_matmul_tflops": 178.3,
+      "tf32_matmul_tflops": 82.7,
+      "memory_bandwidth_gbs": 1577,
+      "nccl_allreduce_algbw_gibs": 0.75
+    }
+  },
+  "model": {
+    "architecture": "Qwen3ForCausalLM (GQA, QK-norm, SwiGLU, RoPE θ=1e5, RMSNorm, tied embeddings)",
+    "params": 494192640,
+    "vocab_size": 32768,
+    "d_model": 1280,
+    "n_layer": 24,
+    "n_head": 20,
+    "n_kv_head": 5,
+    "head_dim": 64,
+    "ffn_dim": 3840,
+    "max_seq_len": 2048
+  },
+  "pretraining": {
+    "dataset": "HuggingFaceFW/fineweb-edu (sample/10BT)",
+    "tokens_trained": 9043968000,
+    "steps": 9200,
+    "global_batch_tokens": 983040,
+    "optimizer": "AdamW (betas=[0.9, 0.95], weight_decay=0.1)",
+    "learning_rate": "8e-4 (WSD: 400 step warmup, 20% linear decay to 5% min_lr)",
+    "precision": "Mixed precision: bfloat16 autocast + float32 master weights",
+    "throughput_tok_s": 136000,
+    "tflops_per_gpu": 91,
+    "initial_loss": 10.6422,
+    "final_train_loss": 2.6955,
+    "final_val_loss": 2.6805,
+    "final_val_perplexity": 14.59
+  },
+  "sft": {
+    "dataset": "HuggingFaceTB/smoltalk (all subsets)",
+    "format": "ChatML with assistant-only loss masking",
+    "rows": 579028,
+    "tokens_trained": 1185357824,
+    "steps": 3618,
+    "global_batch_tokens": 327680,
+    "optimizer": "AdamW (betas=[0.9, 0.95], weight_decay=0.0)",
+    "learning_rate": "1e-4 (linear decay)",
+    "initial_loss": 1.9720,
+    "final_train_loss": 0.9764,
+    "final_val_loss": 1.0293,
+    "final_val_perplexity": 2.80
+  }
+}
